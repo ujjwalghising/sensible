@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import path from "path";
 import cors from "cors";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -14,15 +15,20 @@ dotenv.config();
 connectDB();
 
 const app = express();
-const cors = require('cors');
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
 // Middleware
 app.use(cors({ 
-  origin: ['https://localhost:5173','https://sensible-ujjwals-projects-fc2996e3.vercel.app/'], 
+  origin: [
+    'http://localhost:5173',  // Local dev
+    'http://localhost:5174',  // Another dev port
+    'https://sensible-ujjwals-projects-fc2996e3.vercel.app',  // Vercel frontend
+    'https://sensible-production-4915.up.railway.app'  // Railway backend
+  ], 
   credentials: true 
 }));
+
 app.use(express.json());
 app.use("/api/cart", cartRoutes);
 app.use("/api/products", productRoutes)
@@ -36,14 +42,6 @@ mongoose
 mongoose.connection.on("error", (err) => {
   console.error("❌ MongoDB Error:", err);
 });
-const fetchCartItems = () => {
-  axios.get('/api/cart') // Correct route
-    .then((response) => {
-      setCartItems(response.data);
-    })
-    .catch((error) => console.error('Error fetching cart items:', error));
-};
-
 
 // ✅ Mongoose User Model (with age and gender)
 const userSchema = new mongoose.Schema(
