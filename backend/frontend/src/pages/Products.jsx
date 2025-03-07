@@ -17,8 +17,8 @@ const Products = () => {
     setError(null);
 
     const endpoint = categoryName
-  ? `https://sensible-production-4915.up.railway.app/api/products/category/${categoryName}`
-  : 'https://sensible-production-4915.up.railway.app/api/products';  // Correct the base URL
+  ? `http://localhost:5000/api/products/category/${categoryName}`
+  : 'http://localhost:5000/api/products';  // Correct the base URL
 
     axios.get(endpoint)
       .then((response) => {
