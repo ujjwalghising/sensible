@@ -21,8 +21,6 @@ const MONGO_URI = process.env.MONGO_URI;
 // Middleware
 app.use(cors({ 
   origin: [
-    'http://localhost:5173',  // Local dev
-    'http://localhost:5174',  // Another dev port
     'https://sensible-ujjwals-projects-fc2996e3.vercel.app',  // Vercel frontend
     'https://sensible-production-4915.up.railway.app'  // Railway backend
   ], 
