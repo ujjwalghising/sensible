@@ -22,7 +22,6 @@ const MONGO_URI = process.env.MONGO_URI;
 app.use(cors({ 
   origin: [
     'https://sensible-ujjwals-projects-fc2996e3.vercel.app',  // Vercel frontend
-    'https://sensible-production-4915.up.railway.app'  // Railway backend
   ], 
   credentials: true 
 }));
